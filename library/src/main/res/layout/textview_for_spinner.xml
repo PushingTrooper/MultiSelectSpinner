@@ -10,5 +10,5 @@
 	android:paddingEnd="10dp"
 	android:paddingBottom="5dp"
 	android:singleLine="false"
-	android:textColor="#FF000000"
+	android:textColor="@color/spinnerTitleColor"
 	android:textSize="@dimen/font_size" />
