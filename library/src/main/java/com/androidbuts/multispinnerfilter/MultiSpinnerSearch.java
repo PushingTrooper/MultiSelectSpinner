@@ -23,6 +23,8 @@ import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.core.content.ContextCompat;
 
@@ -55,6 +57,7 @@ public class MultiSpinnerSearch extends AppCompatSpinner implements OnCancelList
 	private MyAdapter adapter;
 	private List<KeyPairBoolData> items;
 	private boolean isSearchEnabled = true;
+	private TextView textViewForSpinner;
 
 	public MultiSpinnerSearch(Context context) {
 		super(context);
@@ -78,6 +81,8 @@ public class MultiSpinnerSearch extends AppCompatSpinner implements OnCancelList
 				textColor = a.getColor(attr, Color.GRAY);
 			}else if (attr == R.styleable.MultiSpinnerSearch_clearText){
 				this.setClearText(a.getString(attr));
+			} else if (attr == R.styleable.MultiSpinnerSearch_titleColor) {
+				this.setTitleColor(a.getColor(attr, Color.WHITE));
 			}
 		}
 
@@ -116,6 +121,12 @@ public class MultiSpinnerSearch extends AppCompatSpinner implements OnCancelList
 
 	public void setClearText(String clearText){
 		this.clearText = clearText;
+	}
+
+	public void setTitleColor(@ColorInt int colorRes) {
+		if (textViewForSpinner != null) {
+			textViewForSpinner.setTextColor(colorRes);
+		}
 	}
 
 	public void setLimit(int limit, LimitExceedListener listener) {
@@ -168,6 +179,7 @@ public class MultiSpinnerSearch extends AppCompatSpinner implements OnCancelList
 
 		ArrayAdapter<String> adapterSpinner = new ArrayAdapter<>(getContext(), R.layout.textview_for_spinner, new String[]{spinnerText});
 		setAdapter(adapterSpinner);
+		textViewForSpinner = findViewById(R.id.textViewForSpinner);
 
 		if (adapter != null)
 			adapter.notifyDataSetChanged();
@@ -284,6 +296,7 @@ public class MultiSpinnerSearch extends AppCompatSpinner implements OnCancelList
 
 		ArrayAdapter<String> adapterSpinner = new ArrayAdapter<>(getContext(), R.layout.textview_for_spinner, new String[]{defaultText});
 		setAdapter(adapterSpinner);
+		textViewForSpinner = findViewById(R.id.textViewForSpinner);
 	}
 
 	public void setEmptyTitle(String emptyTitle) {
