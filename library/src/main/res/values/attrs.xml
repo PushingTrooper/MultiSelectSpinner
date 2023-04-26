@@ -14,6 +14,7 @@
 		<attr name="textColor" />
 		<attr name="clearText" />
 		<attr name="titleColor" />
+		<attr name="selectedBackgroundColor" format="color" />
 	</declare-styleable>
 	<declare-styleable name="SingleSpinnerSearch">
 		<attr name="hintText" />
